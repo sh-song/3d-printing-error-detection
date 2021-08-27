@@ -3,16 +3,13 @@ class NozzleChecker:
         pass
     
     def isNozzleInside(self, centers):
-        
-        bottomRight = centers['11']
+          
+        topLeft = centers['11']
         topRight = centers['12']
-        topLeft = centers['13']
+        bottomRight = centers['13']
         bottomLeft = centers['14']
         nozzle = centers['15']
         
-        if nozzle[0] == -1:
-            return False
-
 
         a_left = (topLeft[0] - bottomLeft[0]) / (topLeft[1] - bottomLeft[1] + 0.0001)
         b_left = topLeft[0] - a_left * topLeft[1]
@@ -34,4 +31,6 @@ class NozzleChecker:
         top_check = a_top * x + b_top > y
         bottom_check = a_bottom * x + b_bottom < y
 
+        print('==========Nozzle Check:', left_check, right_check, top_check, bottom_check)
+        
         return left_check and right_check and top_check and bottom_check
