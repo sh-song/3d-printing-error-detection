@@ -1,0 +1,15 @@
+[INFO] loading image...
+[INFO] detecting 'DICT_4X4_100' tags...
+Center coordinate(x,y):  898 472
+[INFO] ArUco marker ID: 12
+Center coordinate(x,y):  432 470
+[INFO] ArUco marker ID: 11
+Center coordinate(x,y):  279 492
+[INFO] ArUco marker ID: 15
+Center coordinate(x,y):  981 824
+[INFO] ArUco marker ID: 13
+Center coordinate(x,y):  401 816
+[INFO] ArUco marker ID: 14
+{'11': [432, 470], '12': [898, 472], '13': [981, 824], '14': [401, 816], '15': [279, 492]}
+====================== {'left': True, 'right': True, 'top': False, 'bottom': False}
+========Execute Perspective Transform

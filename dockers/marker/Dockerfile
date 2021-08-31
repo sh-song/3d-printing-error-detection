@@ -10,7 +10,8 @@ RUN \
 	apt install -y python3-tk && \
 	apt install -y libsm6 libxext6 libxrender-dev && \
 	pip3 install imutils && \
-	pip3 install scikit-image
+	pip3 install scikit-image && \
+	pip3 install parse
 
 RUN \
 	mkdir home/workspace
