@@ -23,7 +23,11 @@ class PerspectiveTransformer:
         topRight = centers['12']
         bottomRight = centers['13']
         bottomLeft = centers['14']
-
+        
+        # Hard Coding Offset
+        topLeft[0] -= 30
+        bottomLeft[0] -= 30
+        
         # 변환 전 4개 좌표 
         pts1 = np.float32([topLeft, topRight, bottomRight , bottomLeft])
 

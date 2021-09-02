@@ -14,7 +14,7 @@ from gcode_parser import Parser
 import time
 # Parameters
 save_path = 'images/'  
-filename = 'cac_print_2.jpg'
+filename = 'cat_lain_28.jpg'
 # filename = 'outside.png'
 
 #---gcode---
@@ -40,9 +40,9 @@ parser = Parser(data_path, \
 
 
 
-parser.input_file()
-th_parser = threading.Thread(target=parser.start, args=())
-th_parser.start()
+# parser.input_file()
+# th_parser = threading.Thread(target=parser.start, args=())
+# th_parser.start()
 
 
 
@@ -69,6 +69,42 @@ if centers: # All markers are detected
     else:
         print('========Nozzle still inside ROI')
 
+mask = np.zeros(edged_topview.shape)
+croped = edged_topview[250:500, 0:530]
+
+# fliped_croped = cv2.flip(croped, 0)
+fliped_croped = croped
+
+mask[250:500, 0:530] = (fliped_croped == 255)
+len_y, len_x = mask.shape
+cv2.imshow('mask', fliped_croped)
+cv2.waitKey(0)
+
+
+Xs = []
+Ys = []
+fliped = np.zeros(mask.shape)
+for y in range(len_y):
+    for x in range(len_x):
+        if mask[y, x] <= 0:
+            fliped[y, x] = 255
+        else:
+            Xs.append(x)
+            Ys.append(y)
+            
+print(Ys)
+        
+
+
+
+
+
+
+
+
+
+
+
 
 
 # start_time = time.time()
@@ -78,21 +114,22 @@ if centers: # All markers are detected
 #     time.sleep(3)
 
 
-template = cv2.imread('layer_images_from_gcode/No_5_Layer.png')
-gray_template = cv2.cvtColor(template,cv2.COLOR_BGR2GRAY)
-(thresh, bw_template) = cv2.threshold(gray_template, 127, 255, cv2.THRESH_BINARY)
 
-print(bw_template.shape, edged_topview.shape)
-print(edged_topview)
-reversed_topview = 255 - edged_topview
+# template = cv2.imread('layer_images_from_gcode/No_5_Layer.png')
+# gray_template = cv2.cvtColor(template,cv2.COLOR_BGR2GRAY)
+# (thresh, bw_template) = cv2.threshold(gray_template, 127, 255, cv2.THRESH_BINARY)
 
-res = cv2.matchTemplate(reversed_topview, bw_template, cv2.TM_CCOEFF_NORMED)
+# print(bw_template.shape, edged_topview.shape)
+# print(edged_topview)
+# reversed_topview = 255 - edged_topview
 
-cv2.imshow('sibal', res)
-cv2.waitKey(0)
+# res = cv2.matchTemplate(reversed_topview, bw_template, cv2.TM_CCOEFF_NORMED)
 
-print(edged_topview.shape, gray_template.shape, res.shape)
-print('---------------------------------------everything owari')
+# cv2.imshow('sibal', res)
+# cv2.waitKey(0)
+
+# print(edged_topview.shape, gray_template.shape, res.shape)
+# print('---------------------------------------everything owari')
 
 
 
